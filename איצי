@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>הספירה לאחור של איצי</title>
+  <!-- ספרית קונפטי -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- פונט Google Assistant -->
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Assistant', sans-serif;
+    }
+    body {
+      margin: 0;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at 20% 40%, #311142 0%, #0d0926 50%, #050312 100%);
+      color: #ffffff;
+      overflow-x: hidden;
+    }
+    .container {
+      text-align: center;
+      max-width: 800px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    .badge {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: #d1d5db;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin: 0;
+      background: linear-gradient(90deg, #c084fc, #e879f9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      color: #a1a1aa;
+      font-size: 1.1rem;
+      margin-top: -10px;
+    }
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      width: 100%;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+    .time-card {
+      background: rgba(23, 15, 38, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 20px 10px;
+      flex: 1;
+      min-width: 110px;
+      max-width: 140px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+    .time-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #f43f5e, #a855f7, #3b82f6);
+    }
+    .icon {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+    }
+    .time-number {
+      font-size: 2.8rem;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .time-label {
+      color: #9ca3af;
+      font-size: 0.9rem;
+    }
+    .banner {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px 30px;
+      width: 100%;
+      max-width: 600px;
+      margin-top: 10px;
+    }
+    .banner-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #f43f5e;
+      margin-bottom: 6px;
+    }
+    .banner-text {
+      color: #9ca3af;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="badge">🎉 חוגגים אירוע מרגש</div>
+  <h1>הספירה לאחור של איצי</h1>
+  <div class="subtitle">נשארו עוד מעט ימים לרגע הגדול!</div>
+
+  <div class="countdown">
+    <div class="time-card">
+      <div class="icon">⏳</div>
+      <div class="time-number" id="days">00</div>
+      <div class="time-label">ימים</div>
+    </div>
+    <div class="time-card">
+      <div class="icon">⏳</div>
+      <div class="time-number" id="hours">00</div>
+      <div class="time-label">שעות</div>
+    </div>
+    <div class="time-card">
+      <div class="icon">⏳</div>
+      <div class="time-number" id="minutes">00</div>
+      <div class="time-label">דקות</div>
+    </div>
+    <div class="time-card">
+      <div class="icon">⏳</div>
+      <div class="time-number" id="seconds">00</div>
+      <div class="time-label">שניות</div>
+    </div>
+  </div>
+
+  <div class="banner">
+    <div class="banner-title">✨ שמחה גדולה באוויר ✨</div>
+    <p class="banner-text">הכנות נמרצות, התרגשות גדולה וספירה לאחור לקראת כניסתו של איצי לעול המצוות!</p>
+  </div>
+</div>
+
+<script>
+  // מנגנון קונפטי רציף וללא הפסקה
+  function launchConfetti() {
+    confetti({
+      particleCount: 40,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors: ['#c084fc', '#e879f9', '#3b82f6', '#f43f5e']
+    });
+    confetti({
+      particleCount: 40,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors: ['#c084fc', '#e879f9', '#3b82f6', '#f43f5e']
+    });
+  }
+
+  // הפעלה ראשונית ולאחר מכן לולאה קבועה כל 2.5 שניות
+  launchConfetti();
+  setInterval(launchConfetti, 2500);
+
+  // חישוב היעד מדויק: 101 ימים החל מחצות (03.09.2026 00:00:00)
+  const midnightTarget = new Date("2026-09-03T00:00:00").getTime();
+  const targetDate = midnightTarget + (101 * 24 * 60 * 60 * 1000);
+
+  function updateTimer() {
+    const now = new Date().getTime();
+    const difference = targetDate - now;
+
+    if (difference <= 0) {
+      document.querySelector(".container").innerHTML = "<h1>מזל טוב! הגיע זמן בר המצווה!</h1>";
+      return;
+    }
+
+    const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+    document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+    document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+    document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>
